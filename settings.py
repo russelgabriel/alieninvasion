@@ -26,8 +26,6 @@ class Settings:
 
 		self.difficulty_level = 'easy'
 
-		self.initialize_dynamic_settings()
-
 	def initialize_dynamic_settings(self):
 		"""Initialize settings that change throughout the game"""
 
@@ -56,6 +54,9 @@ class Settings:
 			self.ship_speed = 3.0
 			self.bullet_speed = 6.0
 			self.alien_speed = 2.0
+
+		# Scoring
+		self.alien_points = 50
 
 	def increase_speed(self):
 		"""Increase speed settings"""
