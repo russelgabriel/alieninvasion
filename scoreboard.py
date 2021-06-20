@@ -17,15 +17,8 @@ class Scoreboard:
 		self.text_color = (30, 30, 30)
 		self.font = pygame.font.SysFont(None, 48)
 
-		# Prepare initial score image
-		self.prep_score()
-		self.prep_high_score()
-
-		# Prepare level image
-		self.prep_level()
-
-		# Prepare ship as lives images
-		self.prep_ships()
+		# Prepare score board images
+		self.prep_images()
 
 	def prep_level(self):
 		"""Turn level into rendered image"""
@@ -58,6 +51,13 @@ class Scoreboard:
 		self.score_rect = self.score_image.get_rect()
 		self.score_rect.right = self.screen_rect.right - 20
 		self.score_rect.top = 20
+
+	def prep_images(self):
+		"""Prep all images for scoreboard"""
+		self.prep_score()
+		self.prep_high_score()
+		self.prep_level()
+		self.prep_ships()
 
 	def prep_high_score(self):
 		"""Turn high score into rendered image"""

@@ -96,9 +96,7 @@ class AlienInvasion:
 
 		if button_clicked and not self.stats.game_active:
 			self._start_game()
-			self.sb.prep_level()
-			self.sb.prep_score()
-			self.sb.prep_ships()
+			self.sb.prep_images()
 
 	def _check_difficulty_buttons(self, mouse_pos):
 		"""Set the appropriate game difficulty"""
@@ -198,14 +196,19 @@ class AlienInvasion:
 			self.sb.check_high_score()
 			self.sb.prep_level()
 		if not self.aliens:
-			# Destroy existing bullets and create new fleet
-			self.bullets.empty()
-			self._create_fleet()
-			self.settings.increase_speed()
+			self._start_new_level()
 
-			# Increment level by one and show level
-			self.stats.level += 1
-			self.sb.prep_level()
+	def _start_new_level(self):
+		"""Start a new level when there are no more aliens"""
+
+		# Destroy existing bullets and create new fleet
+		self.bullets.empty()
+		self._create_fleet()
+		self.settings.increase_speed()
+
+		# Increment level by one and show level
+		self.stats.level += 1
+		self.sb.prep_level()
 
 	def _create_fleet(self):
 		"""Create fleet of aliens"""
