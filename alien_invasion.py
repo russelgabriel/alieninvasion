@@ -38,6 +38,9 @@ class AlienInvasion:
 		self.stats = GameStats(self)
 		self.sb = Scoreboard(self)
 
+		# Get stored highscore
+		self.stats._get_high_score()
+
 	def _make_difficulty_buttons(self):
 		"""Make buttons that allow player to select difficulty level"""
 
@@ -78,6 +81,7 @@ class AlienInvasion:
 
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
+				self.stats._write_new_high_score()
 				sys.exit()
 			if event.type == pygame.KEYDOWN:
 				self._check_keydown_events(event)
@@ -151,6 +155,7 @@ class AlienInvasion:
 		if event.key == pygame.K_p:
 			self._start_game()
 		if event.key == pygame.K_q:
+			self.stats._write_new_high_score()
 			sys.exit()
 
 	def _check_keyup_events(self, event):

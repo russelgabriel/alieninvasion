@@ -18,3 +18,12 @@ class GameStats:
 		self.ships_left = self.settings.ship_limit
 		self.score = 0
 		self.level = 1
+
+	def _get_high_score(self):
+		with open('high_score.txt') as f:
+			score = f.read()
+			self.high_score = int(score)
+
+	def _write_new_high_score(self):
+		with open('high_score.txt', 'w') as f:
+			f.write(str(self.high_score))
