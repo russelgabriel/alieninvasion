@@ -38,9 +38,6 @@ class AlienInvasion:
 		self.stats = GameStats(self)
 		self.sb = Scoreboard(self)
 
-		# Get stored highscore
-		self.stats._get_high_score()
-
 	def _make_difficulty_buttons(self):
 		"""Make buttons that allow player to select difficulty level"""
 
