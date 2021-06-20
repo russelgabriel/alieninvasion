@@ -95,6 +95,9 @@ class AlienInvasion:
 
 		if button_clicked and not self.stats.game_active:
 			self._start_game()
+			self.sb.prep_level()
+			self.sb.prep_score()
+			self.sb.prep_ships()
 
 	def _check_difficulty_buttons(self, mouse_pos):
 		"""Set the appropriate game difficulty"""
@@ -272,6 +275,7 @@ class AlienInvasion:
 		if self.stats.ships_left > 1:
 			# Decrement ships_left
 			self.stats.ships_left -= 1
+			self.sb.prep_ships()
 
 			# Get rid of remaining bullets and aliens
 			self.aliens.empty()
