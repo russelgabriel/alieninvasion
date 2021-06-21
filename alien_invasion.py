@@ -8,6 +8,7 @@ from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from boss import Boss
 
 class AlienInvasion:
 	"""Overall class to manage game assets and behaviour"""
@@ -25,8 +26,10 @@ class AlienInvasion:
 		self.ship = Ship(self)
 		self.bullets = pygame.sprite.Group()
 		self.aliens = pygame.sprite.Group()
+		self.bosses = pygame.sprite.Group()
 
 		self._create_fleet()
+		self._create_boss()
 
 		# Make play button
 		self.play_button = Button(self, "Play")
@@ -69,6 +72,7 @@ class AlienInvasion:
 			if self.stats.game_active:
 				self.ship.update()
 				self._update_bullets()
+				self._update_boss()
 				self._update_aliens()
 
 			self._update_screen()
@@ -204,6 +208,7 @@ class AlienInvasion:
 		# Destroy existing bullets and create new fleet
 		self.bullets.empty()
 		self._create_fleet()
+		self._create_boss()
 		self.settings.increase_speed()
 
 		# Increment level by one and show level
@@ -274,6 +279,13 @@ class AlienInvasion:
 		# Look for aliens reaching bottom of the screen
 		self._check_aliens_bottom()
 
+	def _create_boss(self):
+		boss = Boss(self)
+		self.bosses.add(boss)
+
+	def _update_boss(self):
+		self.bosses.update()
+
 	def _ship_hit(self):
 		"""Respond to ship hit by alien"""
 
@@ -305,6 +317,7 @@ class AlienInvasion:
 		for bullet in self.bullets.sprites():
 			bullet.draw_bullet()
 		self.aliens.draw(self.screen)
+		self.bosses.draw(self.screen)
 		self.sb.show_score()
 
 		if not self.stats.game_active:

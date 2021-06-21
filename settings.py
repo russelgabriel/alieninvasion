@@ -35,6 +35,7 @@ class Settings:
 		self.ship_speed = 1.5
 		self.bullet_speed = 3.0
 		self.alien_speed = 1.0
+		self.boss_speed = 1.0
 
 		# 1 is right, -1 is left
 		self.fleet_direction = 1
@@ -45,21 +46,25 @@ class Settings:
 			self.ship_speed = 0.75
 			self.bullet_speed = 1.5
 			self.alien_speed = 0.5
+			self.boss_speed = 1.0
 		elif self.difficulty_level == 'medium':
 			self.ship_limit = 3
 			self.bullets_allowed = 3
 			self.ship_speed = 1.5
 			self.bullet_speed = 3.0
 			self.alien_speed = 1.0
+			self.boss_speed = 1.5
 		elif self.difficulty_level == 'difficult':
 			self.ship_limit = 2
 			self.bullets_allowed = 3
 			self.ship_speed = 3.0
 			self.bullet_speed = 6.0
 			self.alien_speed = 2.0
+			self.boss_speed = 2.0
 
 		# Scoring
 		self.alien_points = 50
+		self.boss_points = 1000
 
 	def increase_speed(self):
 		"""Increase speed and alien value settings"""
@@ -67,6 +72,7 @@ class Settings:
 		self.bullet_speed *= self.speedup_scale
 		self.alien_speed *= self.speedup_scale
 		self.alien_points = int(self.alien_points * self.score_scale)
+		self.boss_points = iny(self.boss_points * self.score_scale)
 
 
 
