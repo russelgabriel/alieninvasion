@@ -28,10 +28,9 @@ class AlienInvasion:
 		self.aliens = pygame.sprite.Group()
 		self.bosses = pygame.sprite.Group()
 
-		self._create_fleet()
-		self._create_boss()
-
-		# Make play button
+		self._create_fleet()   
+ 
+ 		# Make play button
 		self.play_button = Button(self, "Play")
 
 		# Make difficulty buttons
@@ -199,21 +198,27 @@ class AlienInvasion:
 			self.sb.prep_score()
 			self.sb.check_high_score()
 			self.sb.prep_level()
-		if not self.aliens:
+		if not self.aliens and not self.bosses:
 			self._start_new_level()
 
 	def _start_new_level(self):
 		"""Start a new level when there are no more aliens"""
 
-		# Destroy existing bullets and create new fleet
-		self.bullets.empty()
-		self._create_fleet()
-		self._create_boss()
-		self.settings.increase_speed()
-
 		# Increment level by one and show level
 		self.stats.level += 1
 		self.sb.prep_level()
+
+		# Destroy existing bullets and create new fleet
+		self.bullets.empty()
+
+		# Create boss or fleet depending on level
+		if self.stats.level % 5 == 0:
+			self._create_boss()
+		else:
+			self._create_fleet()
+
+		# Increase difficulty
+		self.settings.increase_speed()
 
 	def _create_fleet(self):
 		"""Create fleet of aliens"""

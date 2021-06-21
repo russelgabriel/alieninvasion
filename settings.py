@@ -27,7 +27,10 @@ class Settings:
 		# How quickly aliens increase in value
 		self.score_scale = 1.5
 
-		self.difficulty_level = 'easy'
+		self.difficulty_level = 'medium'
+
+		# Keep track of level
+		self.level = 1
 
 	def initialize_dynamic_settings(self):
 		"""Initialize settings that change throughout the game"""
@@ -68,11 +71,14 @@ class Settings:
 
 	def increase_speed(self):
 		"""Increase speed and alien value settings"""
+		self.level += 1
 		self.ship_speed *= self.speedup_scale
 		self.bullet_speed *= self.speedup_scale
 		self.alien_speed *= self.speedup_scale
 		self.alien_points = int(self.alien_points * self.score_scale)
-		self.boss_points = iny(self.boss_points * self.score_scale)
+		if self.level != 5 and self.level % 5 == 0:
+			self.boss_speed = int(self.boss_speed * self.speedup_scale)
+			self.boss_points = int(self.boss_points * self.score_scale)
 
 
 

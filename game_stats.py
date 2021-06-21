@@ -17,7 +17,7 @@ class GameStats:
 		"""Initialize statistics that can change during game"""
 		self.ships_left = self.settings.ship_limit
 		self.score = 0
-		self.level = 1
+		self.level = 4
 
 	def _get_high_score(self):
 		with open('high_score.txt') as f:

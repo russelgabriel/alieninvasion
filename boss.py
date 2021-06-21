@@ -25,6 +25,7 @@ class Boss(Sprite):
 
 	def update(self):
 		"""Move the aliens right or left"""
-		self.rect.x += self.settings.boss_speed
+		self.x += self.settings.boss_speed
+		self.rect.x = self.x
 		if self.rect.left < 0 or self.rect.right > self.screen_rect.right:
 			self.settings.boss_speed *= -1
