@@ -30,7 +30,10 @@ class Settings:
 		self.difficulty_level = 'medium'
 
 		# Keep track of level
-		self.level = 1
+		self.level = 4
+
+		# Create boss starting health
+		self.boss_start_health = 20
 
 	def initialize_dynamic_settings(self):
 		"""Initialize settings that change throughout the game"""
@@ -39,7 +42,7 @@ class Settings:
 		self.bullet_speed = 3.0
 		self.alien_speed = 1.0
 		self.boss_speed = 1.0
-		self.boss_health = 20
+		self.boss_health = self.boss_start_health
 
 		# 1 is right, -1 is left
 		self.fleet_direction = 1
@@ -80,7 +83,8 @@ class Settings:
 		if self.level != 5 and self.level % 5 == 0:
 			self.boss_speed = int(self.boss_speed * self.speedup_scale)
 			self.boss_points = int(self.boss_points * self.score_scale)
-			self.boss_health = int(self.boss_health * self.score_scale)
+			self.boss_health = int(
+				self.boss_start_health * (self.score_scale * (self.level // 5)))
 
 
 

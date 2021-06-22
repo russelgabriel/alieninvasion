@@ -200,7 +200,7 @@ class AlienInvasion:
 			self.sb.prep_level()
 
 		self._check_boss_collisions()
-		
+
 		if not self.aliens and not self.bosses:
 			self._start_new_level()
 
@@ -222,9 +222,6 @@ class AlienInvasion:
 				self.sb.prep_score()
 				self.sb.check_high_score()
 				self.sb.prep_level()
-
-
-
 
 	def _start_new_level(self):
 		"""Start a new level when there are no more aliens"""
