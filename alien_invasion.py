@@ -198,8 +198,33 @@ class AlienInvasion:
 			self.sb.prep_score()
 			self.sb.check_high_score()
 			self.sb.prep_level()
+
+		self._check_boss_collisions()
+		
 		if not self.aliens and not self.bosses:
 			self._start_new_level()
+
+	def _check_boss_collisions(self):
+		"""Respons to bullet collisions with boss"""
+
+		# Check if boss still has health
+		if self.settings.boss_health > 1:
+			boss_collisions = pygame.sprite.groupcollide(
+				self.bullets, self.bosses, True, False)
+			if boss_collisions:
+				self.settings.boss_health -= 1
+		# Delete boss if health is 0 and start new level
+		else:
+			boss_collisions = pygame.sprite.groupcollide(
+				self.bullets, self.bosses, True, True)
+			for boss in boss_collisions.values():
+				self.stats.score += self.settings.boss_points
+				self.sb.prep_score()
+				self.sb.check_high_score()
+				self.sb.prep_level()
+
+
+
 
 	def _start_new_level(self):
 		"""Start a new level when there are no more aliens"""

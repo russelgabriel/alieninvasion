@@ -13,7 +13,7 @@ class Settings:
 		self.ship_limit = 3
 
 		# Bullet settings
-		self.bullet_width = 3
+		self.bullet_width = 100
 		self.bullet_height = 15
 		self.bullet_color = (60, 60, 60)
 		self.bullets_allowed = 0
@@ -39,6 +39,7 @@ class Settings:
 		self.bullet_speed = 3.0
 		self.alien_speed = 1.0
 		self.boss_speed = 1.0
+		self.boss_health = 20
 
 		# 1 is right, -1 is left
 		self.fleet_direction = 1
@@ -79,6 +80,7 @@ class Settings:
 		if self.level != 5 and self.level % 5 == 0:
 			self.boss_speed = int(self.boss_speed * self.speedup_scale)
 			self.boss_points = int(self.boss_points * self.score_scale)
+			self.boss_health = int(self.boss_health * self.score_scale)
 
 
 
