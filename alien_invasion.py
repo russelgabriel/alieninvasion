@@ -9,6 +9,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from boss import Boss
+from healthbar import Healthbar
 
 class AlienInvasion:
 	"""Overall class to manage game assets and behaviour"""
@@ -309,6 +310,9 @@ class AlienInvasion:
 	def _create_boss(self):
 		boss = Boss(self)
 		self.bosses.add(boss)
+		self.healthbar = Healthbar(self, self.settings.boss_health)
+
+		# TODO fix boss health stuff please
 
 	def _update_boss(self):
 		self.bosses.update()
@@ -346,6 +350,9 @@ class AlienInvasion:
 		self.aliens.draw(self.screen)
 		self.bosses.draw(self.screen)
 		self.sb.show_score()
+
+		if len(self.bosses.sprites()) > 0:
+			self.healthbar.draw_health_bar()
 
 		if not self.stats.game_active:
 			self.play_button.draw_button()
