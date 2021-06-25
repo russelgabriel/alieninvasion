@@ -9,23 +9,30 @@ class Healthbar:
 		super().__init__()
 
 		self.screen = ai_game.screen
+		self.screen_rect = self.screen.get_rect()
 		self.settings = ai_game.settings
 
-		self.length = 800
 		self.width = 50
 		self.red_color = (250, 0, 0)
 		self.green_color = (0, 250, 0)
 
-		self.red_rect = pygame.Rect(75, 50, 50, 750)
+		self.green_rect = pygame.Rect(50, 75, 50, 750)
 
 		self.start_health = start_health
+		self.add = (1/self.start_health) * 750
 
-	# TODO create method to decrease health after every boss collision
+	def dynamic_settings(self):
+		self.red_length = 0
+
+	def update_health_bar(self):
+		self.red_length += self.add
 
 	def draw_health_bar(self):
 		"""Draw the bar on the screen"""
 
-		# Create red rect
-		pygame.draw.rect(self.screen, self.red_color, self.red_rect)
+		# Create green rect
+		self.red_rect = pygame.Rect(50, 75, 50, self.red_length)
 
+		# Draw both rects
 		pygame.draw.rect(self.screen, self.green_color, self.green_rect)
+		pygame.draw.rect(self.screen, self.red_color, self.red_rect)

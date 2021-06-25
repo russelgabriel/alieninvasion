@@ -214,6 +214,7 @@ class AlienInvasion:
 				self.bullets, self.bosses, True, False)
 			if boss_collisions:
 				self.settings.boss_health -= 1
+				self.healthbar.update_health_bar() 
 		# Delete boss if health is 0 and start new level
 		else:
 			boss_collisions = pygame.sprite.groupcollide(
@@ -311,6 +312,7 @@ class AlienInvasion:
 		boss = Boss(self)
 		self.bosses.add(boss)
 		self.healthbar = Healthbar(self, self.settings.boss_health)
+		self.healthbar.dynamic_settings()
 
 		# TODO fix boss health stuff please
 
