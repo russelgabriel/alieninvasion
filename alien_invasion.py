@@ -237,12 +237,12 @@ class AlienInvasion:
 
 		# Create boss or fleet depending on level
 		if self.stats.level % 5 == 0:
+			self.settings.increase_speed()
 			self._create_boss()
 		else:
 			self._create_fleet()
-
+			self.settings.increase_speed()
 		# Increase difficulty
-		self.settings.increase_speed()
 
 	def _create_fleet(self):
 		"""Create fleet of aliens"""
